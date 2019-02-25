@@ -1,7 +1,7 @@
 #coding:utf-8
 '''
 YAPI_test，是配合集成在jenkins的接口自动化脚本，用来判断每次测试是否通过，测试失败时发送邮件到项目组提醒
-autor:zhjfeng
+author:zhjfeng
 date:20190219
 '''
 import requests
