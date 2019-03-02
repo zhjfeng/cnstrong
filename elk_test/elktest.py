@@ -1,4 +1,9 @@
 #coding:utf-8
+'''
+elk抓取日志脚本
+author：zhjfeng
+date：20190302
+'''
 import requests
 import json
 import smtplib
