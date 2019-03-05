@@ -1,9 +1,4 @@
 #coding:utf-8
-'''
-elk抓取日志脚本
-author：zhjfeng
-date：20190302
-'''
 import requests
 import json
 import smtplib
@@ -22,7 +17,7 @@ starttime = getTimeOClockOfToday()*1000
 endtime = round(t*1000)
 
 url = "http://kibana.leke.cn/elasticsearch/_msearch"
-payload = "{\"index\":[\"eduplan_business_log\"]}\r\n{\"version\":true,\"size\":500,\"sort\":[{\"@timestamp\":{\"order\":\"desc\",\"unmapped_type\":\"boolean\"}}],\"_source\":{\"excludes\":[]},\"aggs\":{\"2\":{\"date_histogram\":{\"field\":\"@timestamp\",\"interval\":\"30m\",\"time_zone\":\"Asia/Shanghai\",\"min_doc_count\":1}}},\"stored_fields\":[\"*\"],\"script_fields\":{},\"docvalue_fields\":[\"@timestamp\"],\"query\":{\"bool\":{\"must\":[{\"query_string\":{\"query\":\"异常\",\"analyze_wildcard\":true,\"default_field\":\"*\"}},{\"range\":{\"@timestamp\":{\"gte\":" + str(starttime) + ",\"lte\":" + str(endtime) + ",\"format\":\"epoch_millis\"}}}],\"filter\":[],\"should\":[],\"must_not\":[]}},\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"fragment_size\":2147483647}}\r\n"
+payload = "{\"index\":[\"eduplan_business_log\"]}\r\n{\"version\":true,\"size\":500,\"sort\":[{\"@timestamp\":{\"order\":\"desc\",\"unmapped_type\":\"boolean\"}}],\"_source\":{\"excludes\":[]},\"aggs\":{\"2\":{\"date_histogram\":{\"field\":\"@timestamp\",\"interval\":\"30m\",\"time_zone\":\"Asia/Shanghai\",\"min_doc_count\":1}}},\"stored_fields\":[\"*\"],\"script_fields\":{},\"docvalue_fields\":[\"@timestamp\"],\"query\":{\"bool\":{\"must\":[{\"query_string\":{\"query\":\"error\",\"analyze_wildcard\":true,\"default_field\":\"*\"}},{\"range\":{\"@timestamp\":{\"gte\":" + str(starttime) + ",\"lte\":" + str(endtime) + ",\"format\":\"epoch_millis\"}}}],\"filter\":[],\"should\":[],\"must_not\":[]}},\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"fragment_size\":2147483647}}\r\n"
 #payload = "{\"index\":[\"eduplan_business_log\"],\"ignore_unavailable\":true,\"preference\":1551507606271}\r\n{\"version\":true,\"size\":500,\"sort\":[{\"@timestamp\":{\"order\":\"desc\",\"unmapped_type\":\"boolean\"}}],\"_source\":{\"excludes\":[]},\"aggs\":{\"2\":{\"date_histogram\":{\"field\":\"@timestamp\",\"interval\":\"30m\",\"time_zone\":\"Asia/Shanghai\",\"min_doc_count\":1}}},\"stored_fields\":[\"*\"],\"script_fields\":{},\"docvalue_fields\":[\"@timestamp\"],\"query\":{\"bool\":{\"must\":[{\"query_string\":{\"query\":\"异常\",\"analyze_wildcard\":true,\"default_field\":\"*\"}},{\"range\":{\"@timestamp\":{\"gte\":1551421208215,\"lte\":1551507608216,\"format\":\"epoch_millis\"}}}],\"filter\":[],\"should\":[],\"must_not\":[]}},\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"fragment_size\":2147483647}}\r\n"
 #print(payload)
 headers = {
@@ -38,18 +33,18 @@ date = time.strftime("%Y-%m-%d")
 if total != 0:
 	# 第三方 SMTP 服务	
 	mail_host="smtp.cnstrong.cn"  #设smtp置服务器
-	mail_user="fxxxxx@cnstrong.cn"    #发送邮箱
+	mail_user="xxxxxxxxxxxx@cnstrong.cn"    #发送邮箱
 	mail_pass="xxxxxxx"   #授权码
 
-	sender = 'xxxxxx@cnstrong.cn'
-	receivers = ['xxxx@cnstrong.cn',]  # 收件邮件
-	message2 = "线上日志报错，请复制整段链接 http://kibana.leke.cn/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now%2Fw,mode:quick,to:now%2Fw))&_a=(columns:!(_source),index:'4b629fb0-340b-11e9-934d-39d734cb03c2',interval:auto,query:(language:lucene,query:%E5%BC%82%E5%B8%B8),sort:!('@timestamp',desc)) 至浏览器查看详情，或登录http://kibana.leke.cn/app/kibana#/discover，切换至eduplan_business_log，搜索关键字异常，查询周期设置为本周。 以下为部分报错日志\n"	
+	sender = 'xxxxxxxx@cnstrong.cn'
+	receivers = ['xxxxxx@cnstrong.cn',]  # 收件邮件
+	message2 = "线上日志报错(抓取了所有包含error的日志信息，未剃重），登录http://kibana.leke.cn/app/kibana#/discover，切换至eduplan_business_log，搜索关键字error。 以下为部分报错日志\n"	
 	for i in range(0,total):
 		#循环输出当天所有报错信息
-		message1 = response["responses"][0]["hits"]["hits"][i]["_source"]
+		message1 = response["responses"][0]["hits"]["hits"][i]["_source"]["message"]
 		#print(str(message1)[:100])
 		#报错信息取前800个字符
-		message2 = message2 + str(message1)[:800] + "\n"
+		message2 =message2 + str(i + 1) + '、"message":' +  str(message1)[:400] + "\n"
 
 	message = MIMEText(date + message2, 'plain', 'utf-8')
 	message['From'] = Header("升学规划测试组", 'utf-8')
@@ -57,6 +52,7 @@ if total != 0:
  
 	subject = date +'线上有' + str(total) +'个报错，请关注'
 	message['Subject'] = Header(subject, 'utf-8')
+	#print(message2)
 
 	try:
 	    smtpObj = smtplib.SMTP() 
