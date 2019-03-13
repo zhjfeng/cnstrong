@@ -1,4 +1,9 @@
 #coding:utf-8
+'''
+elk_test，是抓取ELK平台上，项目组当天报错日志的脚本，如有报错，截取报错数量和信息发送给项目组成员
+author:zhjfeng
+date:20190301
+'''
 import requests
 import json
 import smtplib
