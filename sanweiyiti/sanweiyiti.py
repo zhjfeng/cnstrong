@@ -9,7 +9,7 @@ import emails
 receiver = "xxxxx@cnstrong.cn"
 title = "浙江教育考试院更新了三位一体相关内容，请关注"
 body = '浙江教育考试院更新了三位一体相关内容，请关注http://www.zjzs.net/moban/index/2c9081f061d15b160161d1653f2e000e_tree.html'
-san = '公安警察'
+san = '三位一体'
 today = time.strftime('%Y-%m-%d',time.localtime(time.time()))
 url = "http://www.zjzs.net/moban/index/2c9081f061d15b160161d1653f2e000e_list.html"
 
