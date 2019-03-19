@@ -4,9 +4,6 @@ YAPI_test，是配合集成在jenkins的接口自动化脚本，用来判断每�
 '''
 import requests
 import json
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
 import sys
 sys.path.append('../public/')
 import emails

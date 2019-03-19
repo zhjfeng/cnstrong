@@ -6,9 +6,6 @@ date:20190301
 '''
 import requests
 import json
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
 import time
 import sys
 sys.path.append('../public/')
