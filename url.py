@@ -31,8 +31,6 @@ def getschool_id():
 				return url_b
 	except IndexError:	
 		pass	
-	#url_c ='无数据'
-	#return url_c
 #print(getschool_id())
 
 def geturl_zs():
