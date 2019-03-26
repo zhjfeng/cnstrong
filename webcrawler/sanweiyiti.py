@@ -1,4 +1,7 @@
 #coding:utf-8
+'''
+sanweiyiti 是抓取浙江教育考试院高考信息中和三位一体相关内容的脚本，如出现新的三位一体咨询，发送邮件给项目组成员
+'''
 import requests
 from bs4 import BeautifulSoup 
 import time

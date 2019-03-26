@@ -1,4 +1,7 @@
 #coding:utf-8
+'''
+抓取高考志愿网中的招生官网地址
+'''
 import requests
 from urllib.parse import quote
 from bs4 import BeautifulSoup 
@@ -11,9 +14,7 @@ headers = {
     'Content-Type': "application/x-www-form-urlencoded"
     }
 #payload = "xname=%E5%9B%9B%E5%B7%9D%E5%A4%A7%E5%AD%A6&area=%E5%85%A8%E5%9B%BD&type=0&attr=0&undefined="
-#school = "东莞理工学院"
-def getschool_id():
-	
+def getschool_id():	
 	schoolname = quote(school,'utf-8')
 	payload = "xname=" + str(schoolname) + "&area=%E5%85%A8%E5%9B%BD&type=0&attr=0&undefined="
 	#print(payload)
