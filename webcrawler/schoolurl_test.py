@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-查询招生和院校官网的死链接
+检测招生和院校官网的死链接
 '''
 import os
 import xlrd
