@@ -6,9 +6,8 @@ import requests
 '''
 def get_swagger():
 	url = "http://eduplan.leke.cn/v2/api-docs"
-	response = requests.request("GET", url)
-	swagger_dict = json.loads(response.text)
-	return swagger_dict
+	response = requests.request("GET", url) 
+	return json.loads(response.text)
 
 def del_swagger_m_hd_py():
 	temp = get_swagger()
