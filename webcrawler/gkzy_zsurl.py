@@ -13,26 +13,22 @@ url = "http://www.gkzy.com/frontchoose/universitypage.html"
 headers = {
     'Content-Type': "application/x-www-form-urlencoded"
     }
-#payload = "xname=%E5%9B%9B%E5%B7%9D%E5%A4%A7%E5%AD%A6&area=%E5%85%A8%E5%9B%BD&type=0&attr=0&undefined="
 def getschool_id():	
-	schoolname = quote(school,'utf-8')
+	#搜索院校名，获取院校id
+	schoolname = quote(school,'utf-8')	#院校名转url编码
 	payload = "xname=" + str(schoolname) + "&area=%E5%85%A8%E5%9B%BD&type=0&attr=0&undefined="
-	#print(payload)
-	
 	response = requests.request("POST", url, data=payload, headers=headers)
 	soup = BeautifulSoup(response.text,'html.parser')
-	try:#部分院校有查询不到的情况，做处理
+	try:#部分院校有查询不到的情况，针对异常做处理
 		for link in soup.find_all('a',string = str(school)):	
 			url1 = link.get('href')
 			if url1.strip()=='':
-				pass
+				pass	#第一个会返回空，对空的做处理
 			else:
-				#rl_b = re.findall(r"(.+?);",url1)
 				url_b = re.sub(r';.*$', "", url1)
 				return url_b
 	except IndexError:	
 		pass	
-#print(getschool_id())
 
 def geturl_zs():
 	if getschool_id() != None:
@@ -48,15 +44,13 @@ def geturl_zs():
 				url_zs = test.a.get('href')	
 				return url_zs
 			except AttributeError:
-				return school + ' 高考志愿网无数据，需上院校官网查询'
-	else:
-		return school + ' 高考志愿网无数据，需上院校官网查询'
+				return school + ' 高考志愿网无该院校招生官网链接，需上院校官网查询'
+	else:	#没有找到的院校返回
+		return school + ' 高考志愿网无该院校，需上院校官网查询'
 #print(geturl_zs())
-#schoollist = ["四川大学","清华大学"]
 
 excel = xlrd.open_workbook('D:/zsurl.xlsx')
 table = excel.sheets()[0]
 testurl = table.col_values(0)
 for school in testurl:
-	#print(school)
 	print(geturl_zs())
