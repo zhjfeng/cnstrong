@@ -3,14 +3,11 @@
 爬取院校官网中和招生相关的链接
 '''
 import os
-import xlrd
 import requests
 from bs4 import BeautifulSoup
 import re
 
 schoolurl = eval(open('D:/test.txt','r').read())
-#print(schoolurl)
-
 for key,value in schoolurl.items():
     try:
         response = requests.request("GET", value, timeout=5)
