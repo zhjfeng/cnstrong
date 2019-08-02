@@ -9,11 +9,28 @@ def get_swagger():
 	response = requests.request("GET", url) 
 	return json.loads(response.text)
 
+#def del_swagger_tags():
+temp = get_swagger()
+i = [i for i in temp['tags'] if '升学预测-' in i['description']] 
+temp.update(tags=i)
+#print(i)
+paths_new = {k:v for k,v in temp['paths'].items() if 'addDemandPercent' in k}
+print(paths_new)
+'''
+for j in i:
+	paths_new = {k:v for k,v in temp['paths'].items() if '/hd/' not in k and '/m/' not in k}
+	print(j['name'])
+
+#return temp
+
+
 def del_swagger_m_hd_py():
-	temp = get_swagger()
+	temp = del_swagger_tags()
+	#去除带/hd/,/m/的接口
 	paths_new = {k:v for k,v in temp['paths'].items() if '/hd/' not in k and '/m/' not in k}
 	temp.update(paths=paths_new)
 	return temp
+#print(del_swagger_m_hd_py())
 
 with open("E:/git/cnstrong/test.json","w", encoding='UTF-8') as ff:
 	json.dump(del_swagger_m_hd_py(),ff,ensure_ascii=False)
@@ -38,3 +55,4 @@ def del_swagger_m_hd_java():
 	temp.update(paths=json_paths)
 	#lastjson = json.dumps(temp, ensure_ascii=False)
 	return temp
+'''
