@@ -3,65 +3,36 @@ import time
 import pytest
 
 d = u2.connect()
+#打开微信复制淘口令
+def wx_copy():
+    d.app_start('com.tencent.mm')
+    d(resourceId="com.tencent.mm:id/k_").click()
+    d(resourceId="com.tencent.mm:id/m6").click()
+    d.send_keys("￥FZLcYqqFEs2￥")
+    d(resourceId="com.tencent.mm:id/m6").long_click(0.5)
+    d(text="全选").click()
+    d(text="复制").click()
 
-#pyperclip.copy('￥FZLcYqqFEs2￥')
-d.app_start('com.tencent.mm')
-d(resourceId="com.tencent.mm:id/k_").click()
-#d.xpath("//android.widget.ImageView").click()
-d(resourceId="com.tencent.mm:id/m6").click()
-d.send_keys("￥FZLcYqqFEs2￥")
-#d.long_click("//android.widget.EditText[@text='￥FZLcYqqFEs2￥']", 0.5)
-d(resourceId="com.tencent.mm:id/m6").long_click(0.5)
-d(text="全选").click()
-d(text="复制").click()
-
-d.app_start('com.taobao.taobao')
-d(text="打开").click()
-
-
-
-
-
-'''
-import pytest
-
-import pytest
-@pytest.mark.parametrize("test_input,expected",
-                         [ ("3+5", 8),
-                           ("2+4", 6),
-                           ("6 * 9", 42),
-                         ])
-def test_eval(test_input, expected):
-    assert eval(test_input) == expected
-
-@pytest.fixture()
-#@pytest.fixture(scope="session")
-def open():
-    print("setup——打开浏览器，打开百度首页")
-
-    yield
-    print("teardown——关闭浏览器")
-
-def test_case1(open):
-    print("搜索python")
-
-def test_case2(open): 
-    print("搜索pytest")
-
-def test_case3(open):
-    print("搜索uiautomator")
+#领双11红包并刷猫币
+def tb_11():
+    d.app_start('com.taobao.taobao')
+    #d(text="打开").click()
+    d(description=u"捉猫猫").click()
+    #d(text="TB1SC2xj8v0gK0jSZKbXXbK2FXa-322-76.png_360x10000.jpg_").click()
+    d(text="gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==", className="android.widget.Image", instance=13).click()
+    
+    while d(text="去浏览").exists:
+        d(text="去浏览").click()
+        time.sleep(20)
+        d(description="转到上一层级").click()
+    else:
+        while d(text="去进店").exists:
+            d(text="去进店").click()
+            time.sleep(20)
+            d(description="转到上一层级").click()
 
 
-@pytest.fixture()
-def login():
-    print("登录")
+def jd_11():
+    pass
 
-def test_1(login):
-    print("我的需登录")
-
-def test_2():  # 不传login
-    print("首页")
-
-def test_3(login):
-    print("个人中心需登录")
-'''
+tb_11()
