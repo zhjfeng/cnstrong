@@ -51,13 +51,13 @@ def tb_mb():
             print('去浏览会场')
             time.sleep(20)
             d(description="转到上一层级").click()
-            
+            continue
         if d(text="去进店").exists:
             d(text="去进店").click()
             print('去浏览店铺')
             time.sleep(25)
             d(description="转到上一层级").click()
-            
+            continue
         else:
             print("结束了")
             break
