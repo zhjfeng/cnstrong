@@ -1,0 +1,107 @@
+{
+	"paths": {
+		"/auth/admin/xuebaCfg/getLiveCfg.htm": {
+			"get": {
+				"tags": ["xuebatan-cfg-controller"],
+				"summary": "获取学霸阵容",
+				"operationId": "getLiveCfgUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "provinceId",
+					"in": "query",
+					"description": "provinceId",
+					"required": false,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Result«ConfigDTO«LiveCfgDTO»»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/auth/hd/admin/xuebaCfg/getPrizeCfg.htm": {
+			"get": {
+				"tags": ["xuebatan-cfg-controller"],
+				"summary": "获取学霸活动奖品配置",
+				"operationId": "getPrizeCfgUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "provinceId",
+					"in": "query",
+					"description": "provinceId",
+					"required": false,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Result«ConfigDTO«奖品列表»»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/auth/m/admin/xuebaCfg/getPrizeCfg.htm": {
+			"get": {
+				"tags": ["xuebatan-cfg-controller"],
+				"summary": "获取学霸活动奖品配置",
+				"operationId": "getPrizeCfgUsingGET",
+				"consumes": ["application/json"],
+				"produces": ["*/*"],
+				"parameters": [{
+					"name": "provinceId",
+					"in": "query",
+					"description": "provinceId",
+					"required": false,
+					"type": "integer",
+					"format": "int64"
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Result«ConfigDTO«奖品列表»»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+
+	}
+}
