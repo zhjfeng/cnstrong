@@ -12,10 +12,10 @@ class Xiaolepage(Page):
     question_loc = PageElement(xpath='/html/body/div[1]/div/div/div[4]/div/div[2]/div[2]/div[7]/div/div/p[2]')
     suggest_loc = PageElement(xpath='/html/body/div[1]/div/div/div[4]/div/div[2]/div[2]/div[7]/div/div/p[3]')
 
-    def question(self):
+    def question(self,qa):
         #提问
         self.question_loc.click()
-        self.input_loc.send_keys('三角函数')
+        self.input_loc = qa
         self.send_loc.click()
 
     def suggest(self):

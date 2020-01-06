@@ -15,7 +15,7 @@ class TestXaiole():
         self.xiaole_page = Web.s_start().login('955112', 'a1234567').hi_xiaole()
 
     def test_xiaole(self):
-        self.xiaole_page.question()
+        self.xiaole_page.question('三角函数')
 
     def teardown(self):
         pass
