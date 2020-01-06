@@ -12,8 +12,8 @@ class Web:
     @classmethod
     def s_start(cls):
         #学生按分辨率启动
-        WIDTH = 1920
-        HEIGHT = 1200
+        WIDTH = 960
+        HEIGHT = 600
         PIXEL_RATIO = 3.0
         UA = 'Mozilla/5.0 (Linux; Android 4.1.1; GT-N7100 Build/JRO03C) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/35.0.1916.138 Mobile Safari/537.36 T7/6.3'
 
@@ -22,6 +22,7 @@ class Web:
         options = webdriver.ChromeOptions()
         options.add_experimental_option('mobileEmulation', mobileEmulation)
         cls.driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=options)
+        cls.driver.maximize_window()
         cls.driver.implicitly_wait(10)
         return Loginpage(cls.driver)
 

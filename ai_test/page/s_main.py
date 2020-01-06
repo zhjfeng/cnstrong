@@ -4,20 +4,20 @@
 @Desc    : 学生端主页面
 '''
 from poium import Page, PageElement
+from page.s_xiaole import Xiaolepage
 
-class Main(Page):
-    _xiaole_loc = PageElement(class_name='enterxiaole')
-    _wood_loc = PageElement(class_name='wood')
+class Mainpage(Page):
+    xiaole_loc = PageElement(class_name='enterxiaole')
+    wood_loc = PageElement(class_name='wood')
 
     def task(self):
         #首页任务
-        self.get("http://webapp.leke.cn/leke-ai-pad/#/operation")
-        return self
+        pass
 
-    def xiaole(self):
+    def hi_xiaole(self):
         #小乐同学
-        self._xiaole_loc.click()
-        return self
+        self.xiaole_loc.click()
+        return Xiaolepage(self.driver)
 
     def wood(self):
         #学习森林
