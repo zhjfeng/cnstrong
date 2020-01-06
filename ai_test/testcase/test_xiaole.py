@@ -8,7 +8,7 @@ from poium import Page, PageElement
 import sys
 sys.path.append("E:\\git\\cnstrong\\ai_test")
 from page.web import Web
-from page.s_main import Mainpage
+from page.main import Mainpage
 
 class TestXaiole():
     def setup(self):

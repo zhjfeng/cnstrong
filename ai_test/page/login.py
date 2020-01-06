@@ -4,7 +4,7 @@
 @Desc    : 登录页
 '''
 from poium import Page, PageElement
-from page.s_main import Mainpage
+from page.main import Mainpage
 
 class Loginpage(Page):
     loginname_loc = PageElement(name='loginName')

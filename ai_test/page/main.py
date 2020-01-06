@@ -4,7 +4,7 @@
 @Desc    : 学生端主页面
 '''
 from poium import Page, PageElement
-from page.s_xiaole import Xiaolepage
+from page.xiaole import Xiaolepage
 
 class Mainpage(Page):
     xiaole_loc = PageElement(class_name='enterxiaole')
