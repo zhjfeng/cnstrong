@@ -3,8 +3,7 @@
 @Author  : fzj
 @Desc    : 用例demo
 '''
-import sys
-sys.path.append("E:\\git\\cnstrong\\ai_test")
+
 from page.web import Web
 
 class TestDemo:

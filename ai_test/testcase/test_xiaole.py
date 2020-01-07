@@ -4,11 +4,7 @@
 @Desc    : 小乐demo
 '''
 
-from poium import Page, PageElement
-import sys
-sys.path.append("E:\\git\\cnstrong\\ai_test")
 from page.web import Web
-from page.main import Mainpage
 
 class TestXaiole():
     def setup(self):
@@ -16,6 +12,7 @@ class TestXaiole():
 
     def test_xiaole(self):
         self.xiaole_page.question('三角函数')
+        self.xiaole_page.answer_loc()
 
     def teardown(self):
         pass

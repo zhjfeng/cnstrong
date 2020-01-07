@@ -11,12 +11,15 @@ class Xiaolepage(Page):
     input_loc = PageElement(class_name='inputQuertion')
     question_loc = PageElement(xpath='/html/body/div[1]/div/div/div[4]/div/div[2]/div[2]/div[7]/div/div/p[2]')
     suggest_loc = PageElement(xpath='/html/body/div[1]/div/div/div[4]/div/div[2]/div[2]/div[7]/div/div/p[3]')
+    answer_loc = PageElement(class_name='click_btn')
 
     def question(self,qa):
         #提问
         self.question_loc.click()
         self.input_loc = qa
         self.send_loc.click()
+    def get_answer(self):
+        return str(self.answer_loc.text)
 
     def suggest(self):
         #提建议

@@ -6,7 +6,8 @@
 
 from selenium import webdriver
 from page.login import Loginpage
-
+import sys
+sys.path.append("..")
 class Web:
 
     @classmethod
