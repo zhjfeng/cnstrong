@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="1" name="pytest" skipped="0" tests="2" time="58.114"><testcase classname="testcase.test_demo.TestDemo" file="testcase\test_demo.py" line="13" name="test_login" time="14.803"></testcase><testcase classname="testcase.test_xiaole.TestXaiole" file="testcase\test_xiaole.py" line="15" name="test_xiaole" time="38.267"><failure message="AssertionError: assert &apos;123&apos; in &apos;三角函数综合的微课-1&apos;
+ +  where &apos;三角函数综合的微课-1&apos; = &lt;bound method Xiaolepage.get_answer of &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;&gt;()
+ +    where &lt;bound method Xiaolepage.get_answer of &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;&gt; = &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;.get_answer
+ +      where &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt; = &lt;testcase.test_xiaole.TestXaiole object at 0x03D09070&gt;.xiaole_page">self = &lt;testcase.test_xiaole.TestXaiole object at 0x03D09070&gt;
+browser = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;9dc291a7f281d62f228572e005481a7b&quot;)&gt;
+
+    def test_xiaole(self,browser):
+        self.xiaole_page = Loginpage(browser).login(&apos;955112&apos;, &apos;a1234567&apos;).hi_xiaole()
+    
+        self.xiaole_page.question(&apos;三角函数&apos;)
+&gt;       assert &apos;123&apos; in self.xiaole_page.get_answer()
+E       AssertionError: assert &apos;123&apos; in &apos;三角函数综合的微课-1&apos;
+E        +  where &apos;三角函数综合的微课-1&apos; = &lt;bound method Xiaolepage.get_answer of &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;&gt;()
+E        +    where &lt;bound method Xiaolepage.get_answer of &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;&gt; = &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt;.get_answer
+E        +      where &lt;page.xiaole.Xiaolepage object at 0x0388EE30&gt; = &lt;testcase.test_xiaole.TestXaiole object at 0x03D09070&gt;.xiaole_page
+
+testcase\test_xiaole.py:20: AssertionError</failure></testcase></testsuite>

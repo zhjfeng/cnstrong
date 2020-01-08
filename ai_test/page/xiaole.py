@@ -19,6 +19,9 @@ class Xiaolepage(Page):
         self.input_loc = qa
         self.send_loc.click()
     def get_answer(self):
+        #return str(self.send_loc.text)
+        #print(str(self.send_loc.text))
+        #print(str(self.answer_loc.text))
         return str(self.answer_loc.text)
 
     def suggest(self):

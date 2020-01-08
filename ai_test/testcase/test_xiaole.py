@@ -4,15 +4,15 @@
 @Desc    : 小乐demo
 '''
 
-from page.web import Web
+from page.login import Loginpage
+import pytest
 
 class TestXaiole():
-    def setup(self):
-        self.xiaole_page = Web.s_start().login('955112', 'a1234567').hi_xiaole()
 
-    def test_xiaole(self):
+    def test_xiaole(self,browser):
+        self.xiaole_page = Loginpage(browser).login('955112', 'a1234567').hi_xiaole()
         self.xiaole_page.question('三角函数')
-        self.xiaole_page.answer_loc()
+        assert '123' in self.xiaole_page.get_answer()
 
-    def teardown(self):
-        pass
+if __name__ == '__main__':
+    pytest.main(["-v", "-s", "test_xiaole.py"])
